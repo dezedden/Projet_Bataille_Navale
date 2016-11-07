@@ -9,6 +9,7 @@ int Tab[10][10];
 
 int placer_bateau()
 {
+  int bonjour;
   int j;//colonne
   int l;//longueur bateau
   int k;
