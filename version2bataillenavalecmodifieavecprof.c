@@ -2,16 +2,41 @@
 #include<stdio.h>
 void affiche_tab();
 int placer_bateau();
-
-
+char intialiser_tableau();
 int Tab[10][10];
+char tirer();
+//ok pour la fonction tirer
+char tirer()
+{
+    int i,j,n,bon;
+    char c;
+  	do
+    { printf("Entre la ligne (de A a J): ");
+	  scanf("%c",&c);
+	  i=(c|32)-'a';
+    } while(i<0 || i>9);
+	do
+	{ printf("entre la cordonnee de j : ");
+	  while (scanf("%d",&n)!=1) fflush(stdin);
+	  j=n-1;
+	}while(j<0 || j>9);//tant
+	bon=0;
+	if(Tab[i][j]=='0')
+	{
+         Tab[i][j]='T';
+         affiche_tab();
+         bon=1;
+	}
+	if(bon)
+	{
 
+        tirer();
+	}
+	else printf("RATE, C'est au tour de l'ordianteur");
 
+}
 int placer_bateau()
 {
-  int d;
-  int c;
-  int b;
   int j;//colonne
   int l;//longueur bateau
   int k;
@@ -20,7 +45,7 @@ int placer_bateau()
   int u,h,n;
   int bon;
   char c;
-  for (u=0;u<3;u++)//placer tous les baateaux d'un coup
+  for (u=0;u<1;u++)//placer tous les baateaux d'un coup
   {
   	do
     { printf("Entre la ligne (de A a J): ");
@@ -44,26 +69,27 @@ int placer_bateau()
     { bon=1;
       for (h=0;h<l;h++) // Ici on parcourt d'abord la colonne pour savoir s'il n'y a pas d'autres valeurs"0"
       {
-        if(Tab[i+h][j]==0) bon=0;
+        if(Tab[i+h][j]=='0') bon=0;
       }
-      if(bon) for (k=0;k<l;k++) Tab[i+k][j]=0;
+      if(bon) for (k=0;k<l;k++) Tab[i+k][j]='0';
       else u--;
     }
     if(a==0)
     { bon=1;
       for (h=0;h<l;h++)
       {
-        if(Tab[i][j+h]==0) bon=0;
+        if(Tab[i][j+h]=='0') bon=0;
       }
-      if(bon) for (k=0;k<l;k++) Tab[i][j+k]=0;
+      if(bon) for (k=0;k<l;k++) Tab[i][j+k]='0';
       else u--;
     }
     affiche_tab();
+    tirer();
    }
 
 
 }
- int intialiser_tableau()
+ char intialiser_tableau()
  {
  	int i;
  	int j;
@@ -72,7 +98,7 @@ int placer_bateau()
     	{
     		for(j=0;j<10;j++)
     		{
-    			Tab[i][j]=1;
+    			Tab[i][j]='1';
     		}
  		}
 }
@@ -84,7 +110,7 @@ void affiche_tab()
 	for(i=0;i<10;i++){
 		for(printf("%c",'A'+i),j=0;j<10;j++){
 
-			printf( "  %d   ",Tab[i][j]);
+			printf( "  %c   ",Tab[i][j]);
 
 		}
 		printf("\n");
@@ -95,8 +121,6 @@ void affiche_tab()
 int main ()
 {
 	int i,j;
-	 intialiser_tableau();
-	 placer_bateau();
-	 printf("b");
-
+    intialiser_tableau();
+    placer_bateau();
 }
