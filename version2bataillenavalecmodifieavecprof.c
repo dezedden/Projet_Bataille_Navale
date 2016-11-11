@@ -6,7 +6,6 @@ char intialiser_tableau();
 int Tab[10][10];
 char tirer();
 //ok pour la fonction tirer
-int jbejfnjnefknkafnkf;
 char tirer()
 {
     int i,j,n,bon;
